@@ -1,0 +1,1995 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TBG - The Best Gym. Современный спортивный зал с профессиональными тренерами и премиальным оборудованием. Стань сильнее с нами!">
+    <meta name="keywords" content="спортзал, фитнес, тренажерный зал, тренировки, TBG, The Best Gym">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>TBG - The Best Gym | Стань сильнее с нами</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%92%AA%3C/text%3E%3C/svg%3E">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-black: #0a0a0a;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+            --white: #ffffff;
+            --red: #e63946;
+            --red-hover: #ff4757;
+            --green: #2ea043;
+            --green-light: #7ee787;
+            --transition: all 0.3s ease;
+            --header-height: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--primary-black);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        button {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        :focus-visible {
+            outline: 2px solid var(--red);
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        ::selection {
+            background-color: var(--red);
+            color: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: linear-gradient(90deg, var(--red), var(--red-hover));
+            transform: scaleX(0);
+            transform-origin: 0 0;
+            z-index: 1001;
+            will-change: transform;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(230, 57, 70, 0.2);
+            padding: 0.7rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--red);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a.active {
+            color: var(--red);
+        }
+
+        .btn-primary {
+            background-color: var(--red);
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0) scale(0.96);
+            box-shadow: 0 2px 10px rgba(230, 57, 70, 0.35);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            padding: 0.75rem 2rem;
+            border: 2px solid var(--white);
+            border-radius: 4px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.15s ease, border-color 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary-black);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(0) scale(0.96);
+        }
+
+        /* Ripple effect */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.45);
+            transform: scale(0);
+            animation: ripple 0.6s ease-out forwards;
+            pointer-events: none;
+        }
+
+        .btn-secondary .ripple {
+            background-color: rgba(10, 10, 10, 0.35);
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(10, 10, 10, 0.8), rgba(26, 26, 26, 0.9)),
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80') center/cover;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 0%, rgba(10, 10, 10, 0.5) 100%);
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .hero h1 span {
+            color: var(--red);
+            display: block;
+        }
+
+        .hero-title-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(0.75rem, 2vw, 1.5rem);
+        }
+
+        .hero-dumbbell {
+            width: clamp(2.2rem, 5vw, 3.5rem);
+            height: clamp(2.2rem, 5vw, 3.5rem);
+            color: var(--red);
+            flex-shrink: 0;
+            transform-origin: center;
+            animation: dumbbell-swing 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 14px rgba(230, 57, 70, 0.5));
+        }
+
+        @keyframes dumbbell-swing {
+            0%, 100% { transform: rotate(-12deg); }
+            50% { transform: rotate(12deg); }
+        }
+
+        @keyframes rotate360 {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        section[id] {
+            scroll-margin-top: var(--header-height);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            content-visibility: auto;
+            contain-intrinsic-size: auto 600px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title span {
+            color: var(--red);
+        }
+
+        /* About Section */
+        .about {
+            background-color: var(--dark-gray);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--red);
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about-card {
+            position: relative;
+            background: linear-gradient(145deg, var(--medium-gray), var(--dark-gray));
+            border: 2px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-6px);
+            border-color: var(--red);
+            box-shadow: 0 15px 50px rgba(230, 57, 70, 0.25);
+        }
+
+        .about-card::before {
+            content: '';
+            position: absolute;
+            top: -60px;
+            right: -60px;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(230, 57, 70, 0.25) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .about-card-icon {
+            width: 96px;
+            height: 96px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--red-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 30px rgba(230, 57, 70, 0.45);
+            animation: dumbbell-swing 4s ease-in-out infinite;
+        }
+
+        .about-card-icon svg {
+            width: 52px;
+            height: 52px;
+            color: var(--white);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            color: var(--red);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .about-card p {
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .about-highlights {
+            list-style: none;
+            text-align: left;
+        }
+
+        .about-highlights li {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.65rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .about-highlights li:last-child {
+            border-bottom: none;
+        }
+
+        .about-highlights svg {
+            width: 22px;
+            height: 22px;
+            color: var(--red);
+            flex-shrink: 0;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+            will-change: transform;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--red);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--red);
+            margin-bottom: 1rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.2) rotate(-5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Stats Section */
+        .stats {
+            background-color: var(--primary-black);
+            border-top: 2px solid var(--medium-gray);
+            border-bottom: 2px solid var(--medium-gray);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 900;
+            color: var(--red);
+            line-height: 1.1;
+        }
+
+        .stat-label {
+            margin-top: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--dark-gray);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: var(--medium-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 10px 40px rgba(230, 57, 70, 0.3);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image {
+            transform: scale(1.08);
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--red);
+        }
+
+        .service-content p {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .service-icon {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--red), var(--red-hover));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            box-shadow: 0 8px 30px rgba(230, 57, 70, 0.45);
+            transition: transform 0.4s ease, box-shadow 0.3s ease;
+        }
+
+        .service-icon svg {
+            width: 38px;
+            height: 38px;
+            color: var(--white);
+        }
+
+        .service-icon .emoji-icon {
+            font-size: 2.4rem;
+            line-height: 1;
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.1) rotate(-6deg);
+            box-shadow: 0 10px 35px rgba(230, 57, 70, 0.55);
+        }
+
+        /* Pricing Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background-color: var(--dark-gray);
+            padding: 3rem 2rem;
+            border-radius: 8px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            border: 2px solid var(--medium-gray);
+            will-change: transform;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--red);
+            transform: scale(1.05);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 40px rgba(230, 57, 70, 0.3);
+        }
+
+        .pricing-card.featured:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .pricing-card.featured::before {
+            content: 'ПОПУЛЯРНЫЙ';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--red);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .price {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--red);
+            margin-bottom: 2rem;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--medium-gray);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Trainers Section */
+        .trainers {
+            background-color: var(--dark-gray);
+        }
+
+        .trainers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .trainer-card {
+            background-color: var(--medium-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+
+        .trainer-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.3);
+        }
+
+        .trainer-avatar {
+            padding: 2.5rem 2rem 1.5rem;
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(180deg, var(--medium-gray), var(--dark-gray));
+        }
+
+        .trainer-avatar-icon {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: transform 0.4s ease;
+        }
+
+        .trainer-avatar-icon svg {
+            width: 78px;
+            height: 78px;
+            color: var(--white);
+        }
+
+        .trainer-avatar-icon::after {
+            content: '';
+            position: absolute;
+            inset: -6px;
+            border-radius: 50%;
+            border: 2px dashed rgba(255, 255, 255, 0.25);
+            animation: rotate360 14s linear infinite;
+        }
+
+        .trainer-avatar-icon.male {
+            background: linear-gradient(135deg, #e63946, #b3121f);
+            box-shadow: 0 10px 30px rgba(230, 57, 70, 0.4);
+        }
+
+        .trainer-avatar-icon.female {
+            background: linear-gradient(135deg, #8b2ff7, #e9409a);
+            box-shadow: 0 10px 30px rgba(233, 64, 154, 0.4);
+        }
+
+        .trainer-card:hover .trainer-avatar-icon {
+            transform: scale(1.08);
+        }
+
+        .trainer-info {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .trainer-info h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--red);
+        }
+
+        .trainer-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--red);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            will-change: transform;
+        }
+
+        .review-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.2);
+        }
+
+        .review-text {
+            font-style: italic;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .review-author {
+            font-weight: 700;
+            color: var(--red);
+        }
+
+        .review-stars {
+            color: #ffd700;
+            margin-bottom: 1rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--dark-gray);
+        }
+
+        .faq-item {
+            background-color: var(--medium-gray);
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            color: var(--white);
+            cursor: pointer;
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: var(--light-gray);
+        }
+
+        .faq-question.active {
+            background-color: var(--red);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 1.5rem;
+        }
+
+        .faq-answer.active {
+            max-height: 500px;
+            padding: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--red);
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--red);
+        }
+
+        .contact-form {
+            background-color: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: var(--medium-gray);
+            border: 2px solid var(--light-gray);
+            border-radius: 4px;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--red);
+            box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .error-message {
+            color: var(--red);
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .form-group.error input,
+        .form-group.error textarea {
+            border-color: var(--red);
+        }
+
+        .form-group.error .error-message {
+            display: block;
+        }
+
+        .form-success {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            background-color: rgba(46, 160, 67, 0.15);
+            border: 2px solid var(--green);
+            color: var(--green-light);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            font-weight: 600;
+            animation: fadeInUp 0.4s ease;
+        }
+
+        .form-success.show {
+            display: flex;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-black);
+            padding: 3rem 0 1rem;
+            border-top: 2px solid var(--red);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--red);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--red);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--medium-gray);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 10, 10, 0.98);
+            backdrop-filter: blur(10px);
+            z-index: 999;
+            padding: 5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(100%);
+            transition: transform 0.35s ease, opacity 0.35s ease, visibility 0.35s;
+        }
+
+        .mobile-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .mobile-menu ul {
+            list-style: none;
+            text-align: center;
+            width: 100%;
+        }
+
+        .mobile-menu ul li {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .mobile-menu.active ul li {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-menu.active ul li:nth-child(1) { transition-delay: 0.05s; }
+        .mobile-menu.active ul li:nth-child(2) { transition-delay: 0.10s; }
+        .mobile-menu.active ul li:nth-child(3) { transition-delay: 0.15s; }
+        .mobile-menu.active ul li:nth-child(4) { transition-delay: 0.20s; }
+        .mobile-menu.active ul li:nth-child(5) { transition-delay: 0.25s; }
+        .mobile-menu.active ul li:nth-child(6) { transition-delay: 0.30s; }
+        .mobile-menu.active ul li:nth-child(7) { transition-delay: 0.35s; }
+        .mobile-menu.active ul li:nth-child(8) { transition-delay: 0.40s; }
+
+        .mobile-menu ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu ul li a:hover {
+            color: var(--red);
+        }
+
+        .close-menu {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 2rem;
+            cursor: pointer;
+            padding: 0.25rem;
+        }
+
+        /* Back to top */
+        .back-to-top {
+            position: fixed;
+            right: 2rem;
+            bottom: 2rem;
+            z-index: 1000;
+            width: 3rem;
+            height: 3rem;
+            border: none;
+            border-radius: 50%;
+            background-color: var(--red);
+            color: var(--white);
+            font-size: 1.25rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background-color: var(--red-hover);
+            transform: translateY(-4px);
+        }
+
+        .back-to-top:active {
+            transform: translateY(-1px) scale(0.94);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease;
+        }
+
+        /* Reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-10px);
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+                text-align: center;
+            }
+
+            .back-to-top {
+                right: 1rem;
+                bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <a href="#top" class="logo">TB<span>G</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">О нас</a></li>
+                <li><a href="#features">Преимущества</a></li>
+                <li><a href="#services">Услуги</a></li>
+                <li><a href="#pricing">Абонементы</a></li>
+                <li><a href="#trainers">Тренеры</a></li>
+                <li><a href="#contact" class="btn-primary">Записаться</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Открыть меню" aria-expanded="false">☰</button>
+        </nav>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+        <button class="close-menu" id="closeMenuBtn" aria-label="Закрыть меню">✕</button>
+        <ul>
+            <li><a href="#about" class="mobile-link">О нас</a></li>
+            <li><a href="#features" class="mobile-link">Преимущества</a></li>
+            <li><a href="#services" class="mobile-link">Услуги</a></li>
+            <li><a href="#pricing" class="mobile-link">Абонементы</a></li>
+            <li><a href="#trainers" class="mobile-link">Тренеры</a></li>
+            <li><a href="#reviews" class="mobile-link">Отзывы</a></li>
+            <li><a href="#faq" class="mobile-link">FAQ</a></li>
+            <li><a href="#contact" class="mobile-link btn-primary">Записаться</a></li>
+        </ul>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="top">
+        <div class="hero-content">
+            <h1 class="hero-title-wrap">
+                <svg class="hero-dumbbell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M14.4 14.4 9.6 9.6"></path>
+                    <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l1.768-1.768a2 2 0 1 1 2.828 2.829z"></path>
+                    <path d="m21.5 21.5-1.4-1.4"></path>
+                    <path d="M3.9 3.9 2.5 2.5"></path>
+                    <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.768-1.768a2 2 0 1 1 2.829 2.829z"></path>
+                </svg>
+                Стань сильнее <span>с TBG</span>
+            </h1>
+            <p>Премиальный фитнес-клуб с профессиональными тренерами и современным оборудованием. Твоя лучшая версия начинается здесь.</p>
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn-primary">Выбрать абонемент</a>
+                <a href="#about" class="btn-secondary">Узнать больше</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">О <span>нас</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Философия TBG</h3>
+                    <p>TBG — The Best Gym — это не просто тренажерный зал. Это место, где рождаются чемпионы и формируются сильные личности.</p>
+                    <p>Мы создали пространство, где каждый может раскрыть свой потенциал. Современное оборудование, профессиональные тренеры и уникальная атмосфера мотивации помогут вам достичь любых целей.</p>
+                    <p>Наша миссия — сделать фитнес доступным, эффективным и приятным. Мы верим, что сильное тело — это сильная личность.</p>
+                </div>
+                <div class="about-card">
+                    <div class="about-card-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6.5 6.5 17.5 17.5"></path>
+                            <path d="M21 21l-1-1"></path>
+                            <path d="M3 3l1 1"></path>
+                            <path d="M18 22l4-4"></path>
+                            <path d="M2 6l4-4"></path>
+                            <path d="M3 10l7-7"></path>
+                            <path d="M14 21l7-7"></path>
+                        </svg>
+                    </div>
+                    <h3>Почему выбирают TBG</h3>
+                    <p>Мы не просто даём доступ к тренажёрам — вместе с каждым клиентом мы создаём результат.</p>
+                    <ul class="about-highlights">
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                            Сертифицированные тренеры
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                            Премиальное оборудование
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                            Индивидуальные программы
+                        </li>
+                        <li>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                <path d="M20 6 9 17l-5-5"></path>
+                            </svg>
+                            Атмосфера мотивации
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Наши <span>преимущества</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💪</div>
+                    <h3>Современное оборудование</h3>
+                    <p>Профессиональные тренажеры ведущих мировых брендов для эффективных тренировок</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Опытные тренеры</h3>
+                    <p>Сертифицированные специалисты с многолетним опытом помогут достичь ваших целей</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Индивидуальный подход</h3>
+                    <p>Персональные программы тренировок и питания под ваши цели и возможности</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌟</div>
+                    <h3>Комфортная атмосфера</h3>
+                    <p>Просторные залы, чистота, кондиционирование и дружелюбная обстановка</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <h2 class="section-title">TBG <span>в цифрах</span></h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="100" data-suffix="+">0</div>
+                    <div class="stat-label">Тренажёров</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5000" data-suffix="+">0</div>
+                    <div class="stat-label">Довольных клиентов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="15" data-suffix="">0</div>
+                    <div class="stat-label">Экспертов-тренеров</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="10" data-suffix=" лет">0</div>
+                    <div class="stat-label">Опыта работы</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Наши <span>услуги</span></h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80" alt="Тренажерный зал" class="service-image" loading="lazy" decoding="async" width="600" height="400">
+                    <div class="service-content">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14.4 14.4 9.6 9.6"></path>
+                                <path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l1.768-1.768a2 2 0 1 1 2.828 2.829z"></path>
+                                <path d="m21.5 21.5-1.4-1.4"></path>
+                                <path d="M3.9 3.9 2.5 2.5"></path>
+                                <path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.768-1.768a2 2 0 1 1 2.829 2.829z"></path>
+                            </svg>
+                        </div>
+                        <h3>Тренажерный зал</h3>
+                        <p>Более 100 современных тренажеров для кардио и силовых тренировок. Свободные веса, функциональная зона и оборудование для кроссфита.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=600&q=80" alt="Силовые тренировки" class="service-image" loading="lazy" decoding="async" width="600" height="400">
+                    <div class="service-content">
+                        <div class="service-icon" aria-hidden="true">
+                            <span class="emoji-icon">💪</span>
+                        </div>
+                        <h3>Силовые тренировки</h3>
+                        <p>Программы для набора мышечной массы, развития силы и формирования рельефа. Работа со свободными весами и на тренажерах.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=600&q=80" alt="Персональные тренировки" class="service-image" loading="lazy" decoding="async" width="600" height="400">
+                    <div class="service-content">
+                        <div class="service-icon" aria-hidden="true">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                        </div>
+                        <h3>Персональные тренировки</h3>
+                        <p>Индивидуальные занятия с профессиональным тренером. Персональная программа, контроль техники и мотивация на каждом этапе.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Наши <span>абонементы</span></h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Базовый</h3>
+                    <div class="price">2 990₽<span>/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Доступ в тренажерный зал</li>
+                        <li>Раздевалки и душевые</li>
+                        <li>Консультация тренера</li>
+                        <li>График: 6:00 - 22:00</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Выбрать</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Оптимальный</h3>
+                    <div class="price">4 990₽<span>/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Всё из тарифа "Базовый"</li>
+                        <li>Групповые занятия</li>
+                        <li>2 персональные тренировки</li>
+                        <li>Фитнес-бар со скидкой 20%</li>
+                        <li>График: круглосуточно</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Выбрать</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Премиум</h3>
+                    <div class="price">7 990₽<span>/мес</span></div>
+                    <ul class="pricing-features">
+                        <li>Всё из тарифа "Оптимальный"</li>
+                        <li>8 персональных тренировок</li>
+                        <li>Программа питания</li>
+                        <li>Сауна и массаж</li>
+                        <li>Гостевой визит для друга</li>
+                        <li>График: круглосуточно</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary">Выбрать</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="trainers">
+        <div class="container">
+            <h2 class="section-title">Наши <span>тренеры</span></h2>
+            <div class="trainers-grid">
+                <div class="trainer-card">
+                    <div class="trainer-avatar">
+                        <div class="trainer-avatar-icon male">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M9,9C10.29,9 11.5,9.41 12.47,10.11L17.58,5H13V3H21V11H19V6.41L13.89,11.5C14.59,12.5 15,13.7 15,15A6,6 0 0,1 9,21A6,6 0 0,1 3,15A6,6 0 0,1 9,9M9,11A4,4 0 0,0 5,15A4,4 0 0,0 9,19A4,4 0 0,0 13,15A4,4 0 0,0 9,11Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Александр Петров</h3>
+                        <p>Силовые тренировки, бодибилдинг. Опыт: 10 лет</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-avatar">
+                        <div class="trainer-avatar-icon female">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12,4A6,6 0 0,1 18,10C18,12.97 15.84,15.44 13,15.92V18H15V20H13V22H11V20H9V18H11V15.92C8.16,15.44 6,12.97 6,10A6,6 0 0,1 12,4M12,6A4,4 0 0,0 8,10A4,4 0 0,0 12,14A4,4 0 0,0 16,10A4,4 0 0,0 12,6Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Мария Иванова</h3>
+                        <p>Функциональный тренинг, снижение веса. Опыт: 7 лет</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-avatar">
+                        <div class="trainer-avatar-icon male">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M9,9C10.29,9 11.5,9.41 12.47,10.11L17.58,5H13V3H21V11H19V6.41L13.89,11.5C14.59,12.5 15,13.7 15,15A6,6 0 0,1 9,21A6,6 0 0,1 3,15A6,6 0 0,1 9,9M9,11A4,4 0 0,0 5,15A4,4 0 0,0 9,19A4,4 0 0,0 13,15A4,4 0 0,0 9,11Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Дмитрий Смирнов</h3>
+                        <p>Кроссфит, подготовка спортсменов. Опыт: 12 лет</p>
+                    </div>
+                </div>
+                <div class="trainer-card">
+                    <div class="trainer-avatar">
+                        <div class="trainer-avatar-icon female">
+                            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12,4A6,6 0 0,1 18,10C18,12.97 15.84,15.44 13,15.92V18H15V20H13V22H11V20H9V18H11V15.92C8.16,15.44 6,12.97 6,10A6,6 0 0,1 12,4M12,6A4,4 0 0,0 8,10A4,4 0 0,0 12,14A4,4 0 0,0 16,10A4,4 0 0,0 12,6Z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="trainer-info">
+                        <h3>Елена Козлова</h3>
+                        <p>Йога, пилатес, растяжка. Опыт: 8 лет</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <h2 class="section-title">Отзывы <span>клиентов</span></h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Лучший зал в городе! Современное оборудование, чистота и отличные тренеры. За 3 месяца достиг результатов, о которых даже не мечтал."</p>
+                    <p class="review-author">— Михаил К.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Занимаюсь в TBG уже год. Атмосфера мотивирует, тренеры профессиональные. Особенно нравятся групповые занятия!"</p>
+                    <p class="review-author">— Анна С.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">★★★★★</div>
+                    <p class="review-text">"Персональные тренировки с Александром — это то, что нужно. Индивидуальный подход, постоянная поддержка. Рекомендую!"</p>
+                    <p class="review-author">— Сергей В.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="section-title">Частые <span>вопросы</span></h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
+                        <span>Какой график работы зала?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-1">
+                        <p>Тренажерный зал работает круглосуточно для владельцев абонементов "Оптимальный" и "Премиум". Для тарифа "Базовый" доступно время с 6:00 до 22:00.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+                        <span>Можно ли заморозить абонемент?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-2">
+                        <p>Да, вы можете заморозить абонемент на срок до 30 дней в году. Для этого необходимо обратиться на ресепшн или в личном кабинете.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
+                        <span>Есть ли пробная тренировка?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-3">
+                        <p>Да, мы предоставляем бесплатную пробную тренировку для новых клиентов. Запишитесь через форму на сайте или позвоните нам.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
+                        <span>Нужна ли медицинская справка?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-4">
+                        <p>Для посещения тренажерного зала медицинская справка не обязательна, но рекомендуется. Для групповых занятий и бассейна справка необходима.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
+                        <span>Есть ли парковка?</span>
+                        <span class="faq-icon" aria-hidden="true">+</span>
+                    </button>
+                    <div class="faq-answer" id="faq-answer-5">
+                        <p>Да, у нас есть бесплатная парковка для клиентов на 50 мест. Также рядом расположена городская парковка.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Свяжитесь <span>с нами</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Контактная информация</h3>
+                    <div class="contact-item">
+                        <strong>Адрес:</strong>
+                        <p>г. Москва, ул. Спортивная, д. 15</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Телефон:</strong>
+                        <p>+7 (495) 123-45-67</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Email:</strong>
+                        <p>info@tbg-gym.ru</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>График работы:</strong>
+                        <p>Круглосуточно (для абонементов "Оптимальный" и "Премиум")<br>
+                        6:00 - 22:00 (для абонемента "Базовый")</p>
+                    </div>
+                    <div class="contact-item">
+                        <strong>Социальные сети:</strong>
+                        <p>
+                            <a href="#" style="color: var(--red);">Instagram</a> | 
+                            <a href="#" style="color: var(--red);">VK</a> | 
+                            <a href="#" style="color: var(--red);">Telegram</a>
+                        </p>
+                    </div>
+                </div>
+                <form class="contact-form" id="contactForm" novalidate>
+                    <h3>Записаться на тренировку</h3>
+                    <div class="form-group">
+                        <label for="name">Имя *</label>
+                        <input type="text" id="name" name="name" required autocomplete="name">
+                        <span class="error-message">Пожалуйста, введите ваше имя</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Телефон *</label>
+                        <input type="tel" id="phone" name="phone" required autocomplete="tel" placeholder="+7 (___) ___-__-__">
+                        <span class="error-message">Пожалуйста, введите корректный номер телефона</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" autocomplete="email">
+                        <span class="error-message">Пожалуйста, введите корректный email</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Интересующая услуга</label>
+                        <select id="service" name="service">
+                            <option value="">Выберите услугу</option>
+                            <option value="gym">Тренажерный зал</option>
+                            <option value="personal">Персональная тренировка</option>
+                            <option value="group">Групповое занятие</option>
+                            <option value="trial">Пробная тренировка</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Сообщение</label>
+                        <textarea id="message" name="message"></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary" id="submitBtn" style="width: 100%;">Отправить заявку</button>
+                    <div class="form-success" id="formSuccess" role="status" aria-live="polite">
+                        <span aria-hidden="true">✔</span> Спасибо за заявку! Мы свяжемся с вами в ближайшее время.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>TBG - The Best Gym</h3>
+                    <p>Премиальный фитнес-клуб для тех, кто стремится к лучшему. Стань сильнее с нами!</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Навигация</h3>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#pricing">Абонементы</a></li>
+                        <li><a href="#trainers">Тренеры</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li>г. Москва, ул. Спортивная, 15</li>
+                        <li>+7 (495) 123-45-67</li>
+                        <li>info@tbg-gym.ru</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Информация</h3>
+                    <ul>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                        <li><a href="#">Пользовательское соглашение</a></li>
+                        <li><a href="#">Правила посещения</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year">2024</span> TBG - The Best Gym. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" aria-label="Прокрутить наверх" title="Наверх">↑</button>
+
+    <script>
+        (function () {
+            'use strict';
+
+            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            /* ---------- Mobile Menu ---------- */
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const closeMenuBtn = document.getElementById('closeMenuBtn');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function openMenu() {
+                mobileMenu.classList.add('active');
+                mobileMenu.setAttribute('aria-hidden', 'false');
+                mobileMenuBtn.setAttribute('aria-expanded', 'true');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeMenu() {
+                mobileMenu.classList.remove('active');
+                mobileMenu.setAttribute('aria-hidden', 'true');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = '';
+            }
+
+            mobileMenuBtn.addEventListener('click', openMenu);
+            closeMenuBtn.addEventListener('click', closeMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
+                    closeMenu();
+                    mobileMenuBtn.focus();
+                }
+            });
+
+            /* ---------- Header / Progress / Back-to-top / Scrollspy ---------- */
+            const header = document.getElementById('header');
+            const backToTop = document.getElementById('backToTop');
+            const progressBar = document.getElementById('scrollProgress');
+            const headerOffset = 110;
+            const sections = Array.from(document.querySelectorAll('section[id]'));
+            const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]:not(.btn-primary)'));
+
+            function onScroll() {
+                const y = window.scrollY;
+
+                // Header state
+                header.classList.toggle('scrolled', y > 100);
+
+                // Back to top visibility
+                backToTop.classList.toggle('visible', y > 600);
+
+                // Scroll progress (GPU-friendly scaleX)
+                const doc = document.documentElement;
+                const max = doc.scrollHeight - window.innerHeight;
+                progressBar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+
+                // Scrollspy: highlight active section in nav
+                const probe = y + headerOffset;
+                let current = sections[0];
+                for (const s of sections) {
+                    if (s.offsetTop <= probe) {
+                        current = s;
+                    } else {
+                        break;
+                    }
+                }
+                if (current) {
+                    const currentId = '#' + current.id;
+                    navLinks.forEach(link => {
+                        link.classList.toggle('active', link.getAttribute('href') === currentId);
+                    });
+                }
+            }
+
+            let ticking = false;
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    ticking = true;
+                    window.requestAnimationFrame(() => {
+                        onScroll();
+                        ticking = false;
+                    });
+                }
+            }, { passive: true });
+
+            // Initial state (e.g. after page refresh mid-scroll)
+            onScroll();
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+            });
+
+            /* ---------- FAQ Accordion ---------- */
+            const faqQuestions = document.querySelectorAll('.faq-question');
+
+            function setFaq(question, open) {
+                const answer = question.nextElementSibling;
+                question.classList.toggle('active', open);
+                answer.classList.toggle('active', open);
+                question.setAttribute('aria-expanded', String(open));
+            }
+
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const isActive = question.classList.contains('active');
+                    faqQuestions.forEach(q => setFaq(q, false));
+                    if (!isActive) {
+                        setFaq(question, true);
+                    }
+                });
+            });
+
+            /* ---------- Ripple Effect ---------- */
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('.btn-primary, .btn-secondary');
+                if (!btn) return;
+
+                const rect = btn.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                let x = e.clientX - rect.left - size / 2;
+                let y = e.clientY - rect.top - size / 2;
+
+                // Keyboard activation (Enter/Space): center the ripple
+                if (e.detail === 0) {
+                    x = rect.width / 2 - size / 2;
+                    y = rect.height / 2 - size / 2;
+                }
+
+                const ripple = document.createElement('span');
+                ripple.className = 'ripple';
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                btn.appendChild(ripple);
+                ripple.addEventListener('animationend', () => ripple.remove());
+            }, { passive: true });
+
+            /* ---------- Count-up Stats ---------- */
+            const counters = document.querySelectorAll('.stat-number');
+
+            function animateCounter(el) {
+                const target = parseInt(el.dataset.target, 10);
+                const suffix = el.dataset.suffix || '';
+                const duration = prefersReducedMotion ? 0 : 1500;
+                const start = performance.now();
+
+                function tick(now) {
+                    const progress = duration === 0 ? 1 : Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 4); // easeOutQuart
+                    const value = Math.round(target * eased);
+                    el.textContent = value.toLocaleString('ru-RU') + suffix;
+                    if (progress < 1) {
+                        window.requestAnimationFrame(tick);
+                    }
+                }
+                window.requestAnimationFrame(tick);
+            }
+
+            const counterObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        animateCounter(entry.target);
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.4 });
+
+            counters.forEach(counter => counterObserver.observe(counter));
+
+            /* ---------- Form Validation & Success ---------- */
+            const contactForm = document.getElementById('contactForm');
+            const submitBtn = document.getElementById('submitBtn');
+            const formSuccess = document.getElementById('formSuccess');
+
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                // Prevent double submission
+                if (submitBtn.disabled) return;
+
+                let isValid = true;
+                const name = document.getElementById('name');
+                const phone = document.getElementById('phone');
+                const email = document.getElementById('email');
+
+                // Reset errors
+                document.querySelectorAll('.form-group').forEach(group => {
+                    group.classList.remove('error');
+                });
+
+                function validate(field, condition) {
+                    if (!condition) {
+                        field.parentElement.classList.add('error');
+                        isValid = false;
+                    }
+                }
+
+                // Name
+                validate(name, name.value.trim().length >= 2);
+
+                // Phone
+                const phoneRegex = /^[+]?[\d\s().-]{6,20}$/;
+                validate(phone, phoneRegex.test(phone.value.trim()));
+
+                // Email (optional)
+                if (email.value.trim() !== '') {
+                    validate(email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()));
+                }
+
+                if (!isValid) return;
+
+                // Simulate sending
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Отправка…';
+
+                setTimeout(() => {
+                    formSuccess.classList.add('show');
+                    contactForm.reset();
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Отправить заявку';
+                    setTimeout(() => formSuccess.classList.remove('show'), 6000);
+                }, 800);
+            });
+
+            /* ---------- Fade-in Reveal ---------- */
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const revealObserver = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        obs.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.feature-card, .service-card, .pricing-card, .trainer-card, .review-card')
+                .forEach(el => revealObserver.observe(el));
+
+            /* ---------- Footer Year ---------- */
+            const yearEl = document.getElementById('year');
+            if (yearEl) {
+                yearEl.textContent = new Date().getFullYear();
+            }
+        })();
+    </script>
+</body>
+</html>
