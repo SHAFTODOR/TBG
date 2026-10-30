@@ -842,13 +842,20 @@
         .faq-answer {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
             padding: 0 1.5rem;
+            opacity: 0;
         }
 
         .faq-answer.active {
-            max-height: 500px;
-            padding: 1.5rem;
+            max-height: 0; /* точная высота задаётся в JS через scrollHeight */
+            opacity: 1;
+        }
+
+        /* Вертикальные отступы на контенте, а не на контейнере —
+           чтобы max-height анимировался без скачков */
+        .faq-answer > p {
+            padding: 1.5rem 0;
         }
 
         /* Contact Section */
@@ -1792,8 +1799,18 @@
                 const answer = question.nextElementSibling;
                 question.classList.toggle('active', open);
                 answer.classList.toggle('active', open);
+                // Точная высота контента вместо фиксированных 500px —
+                // анимация всегда равна реальной высоте ответа
+                answer.style.maxHeight = open ? answer.scrollHeight + 'px' : '0px';
                 question.setAttribute('aria-expanded', String(open));
             }
+
+            // Пересчёт высоты открытых ответов при изменении размера окна
+            window.addEventListener('resize', () => {
+                document.querySelectorAll('.faq-answer.active').forEach(answer => {
+                    answer.style.maxHeight = answer.scrollHeight + 'px';
+                });
+            }, { passive: true });
 
             faqQuestions.forEach(question => {
                 question.addEventListener('click', () => {
