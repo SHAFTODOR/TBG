@@ -1,0 +1,57 @@
+name: Deploy and Lint
+
+on:
+  push:
+    branches: ["master"] # У тебя ветка master, поэтому скрипт сработает при пуше в нее
+  workflow_dispatch: # Позволяет запускать вручную из вкладки Actions
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # ПЕРВАЯ РАБОТА: ЛИНТИНГ (Тема 1)
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: Установка Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Установка HTMLHint
+        run: npm install -g htmlhint
+
+      - name: Проверка HTML (Линтинг)
+        run: htmlhint index.html || exit 1 # Если есть ошибки, скрипт упадет
+
+  # ВТОРАЯ РАБОТА: ДЕПЛОЙ (Выполнится ТОЛЬКО если линтинг прошел успешно)
+  deploy:
+    needs: lint
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Клонирование репозитория
+        uses: actions/checkout@v4
+
+      - name: Настройка GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Сборка артефакта
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Берем все файлы из корня
+
+      - name: Публикация на GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
